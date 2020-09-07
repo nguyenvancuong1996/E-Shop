@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost/~/eshop" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="format_sql">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.java.entity" />
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	 
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	 
+	
+	<bean id="flyway" class="org.flywaydb.core.Flyway"
+		init-method="migrate">
+		<property name="baselineOnMigrate" value="true" />
+		<property name="locations" value="classpath:db" />
+		<property name="sqlMigrationPrefix" value="V" />
+		<property name="sqlMigrationSuffix" value=".sql" />
+		<property name="sqlMigrationSeparator" value="__" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>

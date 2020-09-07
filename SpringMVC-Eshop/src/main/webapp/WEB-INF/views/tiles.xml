@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="base-definition"
+		template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/footer.jsp" />
+	</definition>
+
+	<definition name="homepage" extends="base-definition">
+		<put-attribute name="title" value="Home | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/homepage.jsp" />
+	</definition>
+
+	<definition name="register" extends="base-definition">
+		<put-attribute name="title" value="Register | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/register.jsp" />
+	</definition>
+
+	<definition name="login" extends="base-definition">
+		<put-attribute name="title" value="Login | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+	<definition name="logout" extends="base-definition">
+		<put-attribute name="title" value="Logout | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/logout.jsp" />
+	</definition>
+
+	<definition name="category" extends="base-definition">
+		<put-attribute name="title" value="Category | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/category.jsp" />
+	</definition>
+
+	<definition name="productDetail" extends="base-definition">
+		<put-attribute name="title"
+			value="Product Detail | E-Shopper " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/productDetail.jsp" />
+	</definition>
+	<definition name="product" extends="base-definition">
+		<put-attribute name="title" value="Product | E-Shopper" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/product.jsp" />
+	</definition>
+	<definition name="cart" extends="base-definition">
+		<put-attribute name="title" value="Cart | E-Shopper " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/cart.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,79 @@
+CREATE TABLE IF NOT EXISTS products (
+  id                INT   AUTO_INCREMENT,
+  productName              VARCHAR(64),
+  productDescription       VARCHAR(256),
+  productImage             VARCHAR(256),
+  productPrice             DOUBLE,
+   category_id           INt  NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (category_id) REFERENCES categories (id)
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id             INT AUTO_INCREMENT,
+  categoryName           VARCHAR(64),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS customers (
+  id               INT AUTO_INCREMENT,
+  email            VARCHAR(128) NOT NULL UNIQUE,
+  encoded_password VARCHAR(256) NOT NULL,
+  first_name       VARCHAR(32),
+  last_name        VARCHAR(32),
+  gender           CHAR(1),
+  phone_number     VARCHAR(32),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS addresses (
+  id               INT AUTO_INCREMENT,
+  first_name       VARCHAR(32),
+  last_name        VARCHAR(32),
+  line1            VARCHAR(255),
+  line2            VARCHAR(255),
+  postal_code      VARCHAR(12),
+  phone_number     VARCHAR(32),
+  email            VARCHAR(128),
+  billing_address  BIT,
+  shipping_address BIT,
+  customer_id      INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customers (id)
+);
+
+CREATE TABLE IF NOT EXISTS carts (
+  id          INT AUTO_INCREMENT,
+  code        VARCHAR(32) NOT NULL UNIQUE,
+  total_price DOUBLE,
+  customer_id INT         NOT NULL UNIQUE,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customers (id)
+);
+
+
+INSERT INTO categories (id, categoryName)
+VALUES ('2', 'Women''s Fashion');
+INSERT INTO categories (id, categoryName)
+VALUES ('3', 'Men''s Fashion');
+INSERT INTO categories (id, categoryName)
+VALUES ('4', 'Sportswear"s Fashion');
+INSERT INTO categories (id, categoryName)
+VALUES ('5', 'Household"s Fashion');
+INSERT INTO categories (id, categoryName)
+VALUES ('6', 'Jean''s Fashion')
+
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (1,T-Shirt,Product Description,100000,30.0,1 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (2,Gucci,Product Description1,100001,50.0,2 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (3,Polo Shirt,Product Description2,100002,60.0,3 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (4,Dior,Product Description3,100003,80.0,4 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (5,Valentino,Product Description4,100004,100.0,5 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (6,Art-Men,Product Description5,100005,200.0,6 );
+INSERT INTO products (id,productName,productDescription ,productImage, productPrice,category_id )
+VALUES (7,Adidas,Product Description6,100006,300.0,7 );
